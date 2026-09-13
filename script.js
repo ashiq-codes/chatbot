@@ -267,10 +267,9 @@ document.addEventListener('DOMContentLoaded', () => {
         const config = MODEL_CONFIGS[modelId] || MODEL_CONFIGS.fast;
         return config.backendModel;
     }
-
-    function getBackendUrl() {
-        return localStorage.getItem(STORAGE_KEYS.API_URL) || 'http://localhost:5000/api/chat';
-    }
+function getBackendUrl() {
+    return localStorage.getItem(STORAGE_KEYS.API_URL) || 'https://backend-disater-iq.vercel.app/api/chat';
+}
 
     // ----------------------------------------------------------------------
     // 7. Conversation & History Data Management
