@@ -6,213 +6,456 @@
     <meta name="description" content="NexusAI - Next-Generation Conversational AI Assistant powered by Google Gemini">
     <meta name="theme-color" content="#0b0d14">
     <title>NexusAI - Modern AI Chat Assistant</title>
+
     <!-- Google Fonts: Inter & JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <!-- App Wrapper -->
     <div class="app-container">
-        
+
         <!-- ==============================================
-             1. SIDEBAR (Collapsible & Persistent Chat History)
+             1. SIDEBAR
              ============================================== -->
         <aside class="sidebar" id="sidebar" aria-label="Sidebar Navigation">
-            <!-- Sidebar Header & Brand -->
+
+            <!-- Sidebar Header -->
             <div class="sidebar-header">
                 <div class="app-brand" role="banner">
                     <div class="brand-icon">
-                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round"
+                            aria-hidden="true">
                             <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
                         </svg>
                     </div>
+
                     <span class="brand-name">Nexus<span>AI</span></span>
                     <span class="brand-badge">PRO</span>
                 </div>
-                <button class="icon-btn sidebar-close-btn" id="sidebar-close-btn" title="Close sidebar" aria-label="Close sidebar">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <button class="icon-btn sidebar-close-btn"
+                    id="sidebar-close-btn"
+                    title="Close sidebar"
+                    aria-label="Close sidebar">
+
+                    <svg width="20" height="20" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
                     </svg>
+
                 </button>
             </div>
 
-            <!-- New Chat Action -->
+            <!-- New Chat -->
             <div class="sidebar-actions">
-                <button class="new-chat-btn" id="new-chat-btn" aria-label="Start a new chat session">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <button class="new-chat-btn"
+                    id="new-chat-btn"
+                    aria-label="Start a new chat session">
+
+                    <svg width="18" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" aria-hidden="true">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
                         <line x1="5" y1="12" x2="19" y2="12"></line>
                     </svg>
+
                     <span>New Chat</span>
                     <kbd class="shortcut-hint">Ctrl+N</kbd>
                 </button>
             </div>
 
-            <!-- Search Conversations Bar -->
+            <!-- Search -->
             <div class="sidebar-search">
                 <div class="search-input-wrapper">
-                    <svg class="search-icon" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <svg class="search-icon" width="15" height="15"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
-                    <input 
-                        type="text" 
-                        id="chat-search-input" 
-                        class="search-input" 
-                        placeholder="Search conversations..." 
-                        aria-label="Search conversation history" 
+
+                    <input
+                        type="text"
+                        id="chat-search-input"
+                        class="search-input"
+                        placeholder="Search conversations..."
+                        aria-label="Search conversation history"
                         autocomplete="off" />
-                    <button type="button" id="search-clear-btn" class="search-clear-btn" title="Clear search" aria-label="Clear search query" style="display: none;">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <button
+                        type="button"
+                        id="search-clear-btn"
+                        class="search-clear-btn"
+                        title="Clear search"
+                        aria-label="Clear search query"
+                        style="display: none;">
+
+                        <svg width="12" height="12"
+                            viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
+
                     </button>
                 </div>
             </div>
 
-            <!-- Chat History Groups (Persisted & Categorized) -->
-            <div class="chat-history-container" id="chat-history" role="navigation" aria-label="Chat History">
-                <!-- Group: Today -->
+            <!-- Chat History -->
+            <div class="chat-history-container"
+                id="chat-history"
+                role="navigation"
+                aria-label="Chat History">
+
                 <div class="history-group" id="group-today">
                     <div class="history-label">Today</div>
                     <ul class="history-list" id="history-list-today"></ul>
                 </div>
 
-                <!-- Group: Yesterday -->
                 <div class="history-group" id="group-yesterday">
                     <div class="history-label">Yesterday</div>
                     <ul class="history-list" id="history-list-yesterday"></ul>
                 </div>
 
-                <!-- Group: Previous 7 Days / Older -->
                 <div class="history-group" id="group-previous">
                     <div class="history-label">Previous</div>
                     <ul class="history-list" id="history-list-previous"></ul>
                 </div>
 
-                <!-- Backward compatibility fallback container -->
-                <ul class="history-list" id="history-list" style="display: none;"></ul>
+                <ul class="history-list"
+                    id="history-list"
+                    style="display: none;"></ul>
 
-                <!-- Empty Search Results Message -->
-                <div class="history-empty-state" id="history-empty-state" style="display: none;">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <div class="history-empty-state"
+                    id="history-empty-state"
+                    style="display: none;">
+
+                    <svg width="28" height="28"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                     </svg>
+
                     <span>No conversations found</span>
                 </div>
             </div>
 
-            <!-- Sidebar User Profile & Settings Footer -->
+            <!-- Sidebar Footer -->
             <div class="sidebar-footer">
-                <div class="user-profile" id="user-profile-btn" role="button" tabindex="0" title="Manage Profile & Settings" aria-label="Manage Profile & Settings">
+
+                <div class="user-profile"
+                    id="user-profile-btn"
+                    role="button"
+                    tabindex="0"
+                    title="Manage Profile & Settings"
+                    aria-label="Manage Profile & Settings">
+
                     <div class="user-avatar" id="user-avatar">
                         <span id="user-avatar-initials">MA</span>
                     </div>
+
                     <div class="user-info">
-                        <span class="user-name" id="user-name-display">Mohamed Ashiq</span>
-                        <span class="user-plan">Pro Member</span>
+                        <span class="user-name" id="user-name-display">
+                            Mohamed Ashiq
+                        </span>
+
+                        <span class="user-plan">
+                            Pro Member
+                        </span>
                     </div>
                 </div>
-                <button class="icon-btn settings-btn" id="settings-btn" title="Settings" aria-label="Open Settings Modal">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <button
+                    class="icon-btn settings-btn"
+                    id="settings-btn"
+                    title="Settings"
+                    aria-label="Open Settings Modal">
+
+                    <svg width="18" height="18"
+                        viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
                         <circle cx="12" cy="12" r="3"></circle>
+
                         <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+
                     </svg>
                 </button>
             </div>
         </aside>
 
-        <!-- Sidebar Overlay (For Mobile Drawer) -->
-        <div class="sidebar-overlay" id="sidebar-overlay" aria-hidden="true"></div>
+        <div class="sidebar-overlay"
+            id="sidebar-overlay"
+            aria-hidden="true"></div>
 
         <!-- ==============================================
              2. MAIN CHAT WORKSPACE
              ============================================== -->
+
         <main class="main-content" role="main">
-            
+
             <!-- Top Navbar -->
-            <header class="top-nav" role="region" aria-label="Top Navigation Bar">
+            <header class="top-nav"
+                role="region"
+                aria-label="Top Navigation Bar">
+
                 <div class="nav-left">
-                    <button class="icon-btn toggle-sidebar-btn" id="toggle-sidebar-btn" title="Toggle Sidebar" aria-label="Toggle Sidebar">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+
+                    <button
+                        class="icon-btn toggle-sidebar-btn"
+                        id="toggle-sidebar-btn"
+                        title="Toggle Sidebar"
+                        aria-label="Toggle Sidebar">
+
+                        <svg width="20" height="20"
+                            viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
+
+                            <rect x="3" y="3" width="18" height="18" rx="2"></rect>
                             <line x1="9" y1="3" x2="9" y2="21"></line>
                         </svg>
                     </button>
-                    
-                    <!-- AI Model Selector Dropdown -->
-                    <div class="model-dropdown-container" id="model-dropdown-container">
-                        <button class="model-badge" id="model-badge-btn" aria-haspopup="true" aria-expanded="false" title="Change AI model">
-                            <span class="model-indicator" id="model-indicator"></span>
-                            <span class="model-name" id="current-model-name">Nexus Fast</span>
-                            <span class="model-subtag" id="current-model-subtag">Gemini Flash</span>
-                            <svg class="model-chevron" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <!-- Model Selector -->
+                    <div class="model-dropdown-container"
+                        id="model-dropdown-container">
+
+                        <button
+                            class="model-badge"
+                            id="model-badge-btn"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            title="Change AI model">
+
+                            <span class="model-indicator"
+                                id="model-indicator"></span>
+
+                            <span class="model-name"
+                                id="current-model-name">
+                                Nexus Fast
+                            </span>
+
+                            <span class="model-subtag"
+                                id="current-model-subtag">
+                                Gemini Flash
+                            </span>
+
+                            <svg class="model-chevron"
+                                width="14"
+                                height="14"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+
                                 <polyline points="6 9 12 15 18 9"></polyline>
                             </svg>
                         </button>
-                        
-                        <!-- Model Options Menu -->
-                        <div class="model-dropdown-menu" id="model-dropdown-menu" role="menu" aria-label="AI Model Options">
-                            <div class="dropdown-header">Choose Model</div>
-                            
-                            <button type="button" class="model-option active" data-model-id="fast" role="menuitem">
+
+                        <div
+                            class="model-dropdown-menu"
+                            id="model-dropdown-menu"
+                            role="menu"
+                            aria-label="AI Model Options">
+
+                            <div class="dropdown-header">
+                                Choose Model
+                            </div>
+
+                            <button
+                                type="button"
+                                class="model-option active"
+                                data-model-id="fast"
+                                role="menuitem">
+
                                 <div class="model-opt-icon">⚡</div>
+
                                 <div class="model-opt-info">
+
                                     <div class="model-opt-title">
                                         <span>Fast (Gemini Flash)</span>
                                         <span class="badge-tag">Quick</span>
                                     </div>
-                                    <div class="model-opt-desc">Ultra-responsive, best for everyday questions & rapid coding</div>
+
+                                    <div class="model-opt-desc">
+                                        Ultra-responsive, best for everyday questions & rapid coding
+                                    </div>
+
                                 </div>
-                                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                                <svg class="check-icon"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true">
+
                                     <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
+
                             </button>
 
-                            <button type="button" class="model-option" data-model-id="balanced" role="menuitem">
+                            <button
+                                type="button"
+                                class="model-option"
+                                data-model-id="balanced"
+                                role="menuitem">
+
                                 <div class="model-opt-icon">⚖️</div>
+
                                 <div class="model-opt-info">
+
                                     <div class="model-opt-title">
                                         <span>Balanced (Gemini Pro)</span>
-                                        <span class="badge-tag balanced">Smart</span>
+                                        <span class="badge-tag balanced">
+                                            Smart
+                                        </span>
                                     </div>
-                                    <div class="model-opt-desc">Strong reasoning, architectural design & nuanced understanding</div>
+
+                                    <div class="model-opt-desc">
+                                        Strong reasoning, architectural design & nuanced understanding
+                                    </div>
+
                                 </div>
-                                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                                <svg class="check-icon"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true">
+
                                     <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
+
                             </button>
 
-                            <button type="button" class="model-option" data-model-id="creative" role="menuitem">
+                            <button
+                                type="button"
+                                class="model-option"
+                                data-model-id="creative"
+                                role="menuitem">
+
                                 <div class="model-opt-icon">🎨</div>
+
                                 <div class="model-opt-info">
+
                                     <div class="model-opt-title">
                                         <span>Creative (Gemini Creative)</span>
-                                        <span class="badge-tag creative">Deep</span>
+                                        <span class="badge-tag creative">
+                                            Deep
+                                        </span>
                                     </div>
-                                    <div class="model-opt-desc">High creativity, long-form content, brainstorming & synthesis</div>
+
+                                    <div class="model-opt-desc">
+                                        High creativity, long-form content, brainstorming & synthesis
+                                    </div>
+
                                 </div>
-                                <svg class="check-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                                <svg class="check-icon"
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    aria-hidden="true">
+
                                     <polyline points="20 6 9 17 4 12"></polyline>
                                 </svg>
+
                             </button>
+
                         </div>
                     </div>
                 </div>
 
                 <div class="nav-right">
-                    <!-- Quick Theme Toggle Button -->
-                    <button class="icon-btn theme-toggle-btn" id="theme-toggle-btn" title="Toggle Light/Dark Theme" aria-label="Toggle Light/Dark Theme">
-                        <svg class="theme-icon-dark" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <!-- Theme Toggle -->
+                    <button
+                        class="icon-btn theme-toggle-btn"
+                        id="theme-toggle-btn"
+                        title="Toggle Light/Dark Theme"
+                        aria-label="Toggle Light/Dark Theme">
+
+                        <svg
+                            class="theme-icon-dark"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
+
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+
                         </svg>
-                        <svg class="theme-icon-light" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+
+                        <svg
+                            class="theme-icon-light"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true"
+                            style="display: none;">
+
                             <circle cx="12" cy="12" r="5"></circle>
                             <line x1="12" y1="1" x2="12" y2="3"></line>
                             <line x1="12" y1="21" x2="12" y2="23"></line>
@@ -222,154 +465,317 @@
                             <line x1="21" y1="12" x2="23" y2="12"></line>
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+
                         </svg>
                     </button>
 
-                    <!-- Clear Chat Button -->
-                    <button class="nav-btn clear-btn" id="clear-chat-btn" title="Clear current chat" aria-label="Clear current chat conversation">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <!-- Clear Chat -->
+                    <button
+                        class="nav-btn clear-btn"
+                        id="clear-chat-btn"
+                        title="Clear current chat"
+                        aria-label="Clear current chat conversation">
+
+                        <svg width="16" height="16"
+                            viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
+
                             <polyline points="3 6 5 6 21 6"></polyline>
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+
                         </svg>
+
                         <span>Clear Chat</span>
                     </button>
+
                 </div>
             </header>
 
-            <!-- Scrollable Chat Viewport -->
-            <div class="chat-viewport" id="chat-viewport" role="log" aria-live="polite" aria-label="Chat messages list">
+            <!-- Chat Viewport -->
+            <div
+                class="chat-viewport"
+                id="chat-viewport"
+                role="log"
+                aria-live="polite"
+                aria-label="Chat messages list">
+
                 <div class="chat-messages" id="chat-messages">
-                    
-                    <!-- Welcome Hero (Visible when chat is empty) -->
+
+                    <!-- Welcome Hero -->
                     <div class="welcome-hero" id="welcome-hero">
+
                         <div class="hero-icon-container">
-                            <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="url(#hero-grad)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                            <svg
+                                width="42"
+                                height="42"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="url(#hero-grad)"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+
                                 <defs>
-                                    <linearGradient id="hero-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <linearGradient
+                                        id="hero-grad"
+                                        x1="0%"
+                                        y1="0%"
+                                        x2="100%"
+                                        y2="100%">
+
                                         <stop offset="0%" stop-color="#38bdf8" />
                                         <stop offset="100%" stop-color="#818cf8" />
+
                                     </linearGradient>
                                 </defs>
+
                                 <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+
                             </svg>
                         </div>
-                        <h1 class="hero-title" id="hero-greeting">How can I assist you today?</h1>
-                        <p class="hero-subtitle">Ask anything, write code, brainstorm ideas, or learn something new.</p>
+
+                        <h1 class="hero-title" id="hero-greeting">
+                            How can I assist you today?
+                        </h1>
+
+                        <p class="hero-subtitle">
+                            Ask anything, write code, brainstorm ideas, or learn something new.
+                        </p>
 
                         <!-- Suggestion Cards -->
                         <div class="suggestions-grid">
-                            <button type="button" class="suggestion-card" data-prompt="Explain how JavaScript Promises and Async/Await work with clear, simple examples.">
+
+                            <button
+                                type="button"
+                                class="suggestion-card"
+                                data-prompt="Explain how JavaScript Promises and Async/Await work with clear, simple examples.">
+
                                 <div class="card-icon">⚡</div>
+
                                 <div class="card-content">
                                     <div class="card-tag">Explanation</div>
-                                    <div class="card-title">Explain Async/Await</div>
-                                    <div class="card-desc">JavaScript asynchronous patterns explained simply</div>
+                                    <div class="card-title">
+                                        Explain Async/Await
+                                    </div>
+                                    <div class="card-desc">
+                                        JavaScript asynchronous patterns explained simply
+                                    </div>
                                 </div>
+
                             </button>
 
-                            <button type="button" class="suggestion-card" data-prompt="Show me how to center a div in modern CSS using both Flexbox and Grid methods.">
+                            <button
+                                type="button"
+                                class="suggestion-card"
+                                data-prompt="Show me how to center a div in modern CSS using both Flexbox and Grid methods.">
+
                                 <div class="card-icon">🎨</div>
+
                                 <div class="card-content">
                                     <div class="card-tag">Frontend</div>
-                                    <div class="card-title">Center a Div in CSS</div>
-                                    <div class="card-desc">Modern Flexbox & Grid centering techniques</div>
+                                    <div class="card-title">
+                                        Center a Div in CSS
+                                    </div>
+                                    <div class="card-desc">
+                                        Modern Flexbox & Grid centering techniques
+                                    </div>
                                 </div>
+
                             </button>
 
-                            <button type="button" class="suggestion-card" data-prompt="Give me 3 cool, beginner-friendly web project ideas using HTML, CSS, and modern JavaScript.">
+                            <button
+                                type="button"
+                                class="suggestion-card"
+                                data-prompt="Give me 3 cool, beginner-friendly web project ideas using HTML, CSS, and modern JavaScript.">
+
                                 <div class="card-icon">💡</div>
+
                                 <div class="card-content">
                                     <div class="card-tag">Ideation</div>
-                                    <div class="card-title">Web Project Ideas</div>
-                                    <div class="card-desc">Exciting beginner projects to build next</div>
+                                    <div class="card-title">
+                                        Web Project Ideas
+                                    </div>
+                                    <div class="card-desc">
+                                        Exciting beginner projects to build next
+                                    </div>
                                 </div>
+
                             </button>
 
-                            <button type="button" class="suggestion-card" data-prompt="Write a clean and robust JavaScript function to filter, search, and sort an array of objects.">
+                            <button
+                                type="button"
+                                class="suggestion-card"
+                                data-prompt="Write a clean and robust JavaScript function to filter, search, and sort an array of objects.">
+
                                 <div class="card-icon">💻</div>
+
                                 <div class="card-content">
                                     <div class="card-tag">Code</div>
-                                    <div class="card-title">Array Sorting in JS</div>
-                                    <div class="card-desc">Clean functions for filtering & sorting data</div>
+                                    <div class="card-title">
+                                        Array Sorting in JS
+                                    </div>
+                                    <div class="card-desc">
+                                        Clean functions for filtering & sorting data
+                                    </div>
                                 </div>
+
                             </button>
+
                         </div>
                     </div>
 
-                    <!-- Dynamic Chat Messages rendered here -->
+                    <!-- Dynamic Chat Messages -->
 
                 </div>
             </div>
 
-            <!-- Floating Message Input Area -->
+            <!-- Input Area -->
             <div class="input-container-wrapper">
-                
-                <!-- Stop Generating Banner (Visible during AI streaming) -->
-                <div class="stop-generating-container" id="stop-generating-container" style="display: none;">
-                    <button type="button" class="stop-generating-btn" id="stop-generating-btn" aria-label="Stop generating response">
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                            <rect x="5" y="5" width="14" height="14" rx="2"></rect>
+
+                <!-- Stop Generating -->
+                <div
+                    class="stop-generating-container"
+                    id="stop-generating-container"
+                    style="display: none;">
+
+                    <button
+                        type="button"
+                        class="stop-generating-btn"
+                        id="stop-generating-btn"
+                        aria-label="Stop generating response">
+
+                        <svg width="14" height="14"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            aria-hidden="true">
+
+                            <rect x="5" y="5"
+                                width="14"
+                                height="14"
+                                rx="2"></rect>
                         </svg>
+
                         <span>Stop Generating</span>
                     </button>
                 </div>
 
-                <!-- Attachment Preview Tray -->
-                <div class="attachment-preview-tray" id="attachment-preview-tray" style="display: none;">
-                    <!-- Attachment chips appended dynamically -->
+                <!-- Attachment Preview -->
+                <div
+                    class="attachment-preview-tray"
+                    id="attachment-preview-tray"
+                    style="display: none;">
+
                 </div>
 
-                <!-- Hidden file input for attachments -->
-                <input 
-                    type="file" 
-                    id="file-input" 
-                    accept="image/*,text/*,.js,.py,.html,.css,.json,.md,.txt,.csv" 
-                    style="display: none;" 
+                <!-- File Input -->
+                <input
+                    type="file"
+                    id="file-input"
+                    accept="image/*,text/*,.js,.py,.html,.css,.json,.md,.txt,.csv"
+                    style="display: none;"
                     aria-label="Upload file attachment" />
 
-                <!-- Input Dock Container -->
+                <!-- Input Dock -->
                 <div class="input-dock">
-                    <form class="input-form" id="chat-form" novalidate>
-                        
-                        <!-- Attachment Button -->
-                        <button type="button" class="dock-btn action-attachment-btn" id="attachment-btn" title="Add file attachment (Images, Code, Text)" aria-label="Add file attachment">
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <form
+                        class="input-form"
+                        id="chat-form"
+                        novalidate>
+
+                        <!-- Attachment -->
+                        <button
+                            type="button"
+                            class="dock-btn action-attachment-btn"
+                            id="attachment-btn"
+                            title="Add file attachment (Images, Code, Text)"
+                            aria-label="Add file attachment">
+
+                            <svg width="20" height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+
                                 <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+
                             </svg>
                         </button>
 
-                        <!-- Expanding Multiline Textarea -->
-                        <textarea 
-                            id="message-input" 
-                            class="message-input" 
-                            placeholder="Message NexusAI... (Press Enter to send, Shift+Enter for new line)" 
+                        <!-- Message Input -->
+                        <textarea
+                            id="message-input"
+                            class="message-input"
+                            placeholder="Message NexusAI... (Press Enter to send, Shift+Enter for new line)"
                             rows="1"
                             aria-label="Message input field"
                             autocomplete="off"></textarea>
 
-                        <!-- Voice Mic Button -->
-                        <button type="button" class="dock-btn voice-btn" id="voice-btn" title="Voice input (Speech to text)" aria-label="Start voice input">
-                            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <!-- Voice -->
+                        <button
+                            type="button"
+                            class="dock-btn voice-btn"
+                            id="voice-btn"
+                            title="Voice input (Speech to text)"
+                            aria-label="Start voice input">
+
+                            <svg width="19" height="19"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+
                                 <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
                                 <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
                                 <line x1="12" y1="19" x2="12" y2="23"></line>
                                 <line x1="8" y1="23" x2="16" y2="23"></line>
+
                             </svg>
                         </button>
 
-                        <!-- Send Button -->
-                        <button type="submit" class="send-btn" id="send-btn" title="Send message" aria-label="Send message" disabled>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <!-- Send -->
+                        <button
+                            type="submit"
+                            class="send-btn"
+                            id="send-btn"
+                            title="Send message"
+                            aria-label="Send message"
+                            disabled>
+
+                            <svg width="18" height="18"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true">
+
                                 <line x1="12" y1="19" x2="12" y2="5"></line>
                                 <polyline points="5 12 12 5 19 12"></polyline>
+
                             </svg>
                         </button>
+
                     </form>
                 </div>
-                
+
                 <div class="input-disclaimer">
                     NexusAI can make mistakes. Consider verifying important facts.
                 </div>
+
             </div>
 
         </main>
@@ -380,106 +786,312 @@
          ============================================== -->
 
     <!-- Settings Modal -->
-    <div class="modal-backdrop" id="settings-modal-backdrop" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog" id="settings-modal" role="dialog" aria-modal="true" aria-labelledby="settings-title">
+    <div
+        class="modal-backdrop"
+        id="settings-modal-backdrop"
+        style="display: none;"
+        aria-hidden="true">
+
+        <div
+            class="modal-dialog"
+            id="settings-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="settings-title">
+
             <div class="modal-header">
+
                 <div class="modal-title-wrap">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <svg width="20" height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
                         <circle cx="12" cy="12" r="3"></circle>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a1.65 1.65 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+
                     </svg>
-                    <h2 id="settings-title">Settings</h2>
+
+                    <h2 id="settings-title">
+                        Settings
+                    </h2>
                 </div>
-                <button type="button" class="icon-btn modal-close-btn" id="settings-close-btn" aria-label="Close Settings">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <button
+                    type="button"
+                    class="icon-btn modal-close-btn"
+                    id="settings-close-btn"
+                    aria-label="Close Settings">
+
+                    <svg width="20" height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
+
                     </svg>
                 </button>
+
             </div>
 
             <div class="modal-body">
-                <!-- Theme Option -->
+
+                <!-- Theme -->
                 <div class="settings-section">
-                    <label class="settings-label">Color Theme</label>
+
+                    <label class="settings-label">
+                        Color Theme
+                    </label>
+
                     <div class="theme-selector-grid">
-                        <button type="button" class="theme-opt-btn" data-theme-val="dark" aria-label="Dark theme">
+
+                        <button
+                            type="button"
+                            class="theme-opt-btn"
+                            data-theme-val="dark"
+                            aria-label="Dark theme">
+
                             <div class="theme-preview dark"></div>
                             <span>Dark</span>
                         </button>
-                        <button type="button" class="theme-opt-btn" data-theme-val="light" aria-label="Light theme">
+
+                        <button
+                            type="button"
+                            class="theme-opt-btn"
+                            data-theme-val="light"
+                            aria-label="Light theme">
+
                             <div class="theme-preview light"></div>
                             <span>Light</span>
                         </button>
-                        <button type="button" class="theme-opt-btn" data-theme-val="system" aria-label="System theme">
+
+                        <button
+                            type="button"
+                            class="theme-opt-btn"
+                            data-theme-val="system"
+                            aria-label="System theme">
+
                             <div class="theme-preview system"></div>
                             <span>System</span>
                         </button>
+
                     </div>
                 </div>
 
-                <!-- User Name Option -->
+                <!-- User Name -->
                 <div class="settings-section">
-                    <label class="settings-label" for="settings-username-input">Your Display Name</label>
-                    <input type="text" id="settings-username-input" class="settings-input" placeholder="e.g. Mohamed Ashiq" maxlength="32" />
-                    <p class="settings-hint">Used in personalized greetings and avatar initials.</p>
+
+                    <label
+                        class="settings-label"
+                        for="settings-username-input">
+
+                        Your Display Name
+
+                    </label>
+
+                    <input
+                        type="text"
+                        id="settings-username-input"
+                        class="settings-input"
+                        placeholder="e.g. Mohamed Ashiq"
+                        maxlength="32" />
+
+                    <p class="settings-hint">
+                        Used in personalized greetings and avatar initials.
+                    </p>
+
                 </div>
 
                 <!-- Backend API Endpoint -->
                 <div class="settings-section">
-                    <label class="settings-label" for="settings-api-url">Backend Chat Endpoint</label>
+
+                    <label
+                        class="settings-label"
+                        for="settings-api-url">
+
+                        Backend Chat Endpoint
+
+                    </label>
+
                     <div class="api-input-wrap">
-                        <input type="url" id="settings-api-url" class="settings-input" value="http://localhost:5000/api/chat" placeholder="http://localhost:5000/api/chat" />
-                        <button type="button" class="action-pill-btn" id="test-api-btn">Test</button>
+
+                        <input
+                            type="url"
+                            id="settings-api-url"
+                            class="settings-input"
+                            value="https://backend-disater-iq.vercel.app/api/chat"
+                            placeholder="https://backend-disater-iq.vercel.app/api/chat" />
+
+                        <button
+                            type="button"
+                            class="action-pill-btn"
+                            id="test-api-btn">
+
+                            Test
+
+                        </button>
+
                     </div>
-                    <div class="api-status-msg" id="api-status-msg"></div>
+
+                    <div
+                        class="api-status-msg"
+                        id="api-status-msg">
+                    </div>
+
                 </div>
 
                 <!-- Data Management -->
                 <div class="settings-section">
-                    <label class="settings-label">Data Management</label>
-                    <button type="button" class="danger-btn" id="clear-all-data-btn">
-                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                    <label class="settings-label">
+                        Data Management
+                    </label>
+
+                    <button
+                        type="button"
+                        class="danger-btn"
+                        id="clear-all-data-btn">
+
+                        <svg width="15" height="15"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            aria-hidden="true">
+
                             <polyline points="3 6 5 6 21 6"></polyline>
+
                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+
                         </svg>
-                        <span>Delete All Conversations</span>
+
+                        <span>
+                            Delete All Conversations
+                        </span>
+
                     </button>
                 </div>
+
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="primary-btn" id="settings-save-btn">Done</button>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="settings-save-btn">
+
+                    Done
+
+                </button>
+
             </div>
+
         </div>
     </div>
 
     <!-- Rename Conversation Dialog -->
-    <div class="modal-backdrop" id="rename-modal-backdrop" style="display: none;" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-sm" role="dialog" aria-modal="true" aria-labelledby="rename-title">
+    <div
+        class="modal-backdrop"
+        id="rename-modal-backdrop"
+        style="display: none;"
+        aria-hidden="true">
+
+        <div
+            class="modal-dialog modal-dialog-sm"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="rename-title">
+
             <div class="modal-header">
-                <h3 id="rename-title">Rename Conversation</h3>
-                <button type="button" class="icon-btn modal-close-btn" id="rename-close-btn" aria-label="Close rename dialog">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+
+                <h3 id="rename-title">
+                    Rename Conversation
+                </h3>
+
+                <button
+                    type="button"
+                    class="icon-btn modal-close-btn"
+                    id="rename-close-btn"
+                    aria-label="Close rename dialog">
+
+                    <svg width="18" height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        aria-hidden="true">
+
                         <line x1="18" y1="6" x2="6" y2="18"></line>
                         <line x1="6" y1="6" x2="18" y2="18"></line>
+
                     </svg>
+
                 </button>
+
             </div>
+
             <div class="modal-body">
-                <input type="text" id="rename-chat-input" class="settings-input" placeholder="New title..." maxlength="60" />
+
+                <input
+                    type="text"
+                    id="rename-chat-input"
+                    class="settings-input"
+                    placeholder="New title..."
+                    maxlength="60" />
+
             </div>
+
             <div class="modal-footer">
-                <button type="button" class="secondary-btn" id="rename-cancel-btn">Cancel</button>
-                <button type="button" class="primary-btn" id="rename-save-btn">Save</button>
+
+                <button
+                    type="button"
+                    class="secondary-btn"
+                    id="rename-cancel-btn">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="button"
+                    class="primary-btn"
+                    id="rename-save-btn">
+
+                    Save
+
+                </button>
+
             </div>
+
         </div>
     </div>
 
-    <!-- Toast Feedback Notifications Container -->
-    <div class="toast-container" id="toast-container" aria-live="polite"></div>
+    <!-- Toast Notifications -->
+    <div
+        class="toast-container"
+        id="toast-container"
+        aria-live="polite">
+    </div>
 
-    <!-- Main JavaScript Logic -->
+    <!-- Main JavaScript -->
     <script src="script.js"></script>
+
 </body>
 </html>
