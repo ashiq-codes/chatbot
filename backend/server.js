@@ -143,13 +143,19 @@ app.use((req, res) => {
 });
 
 // ==========================================================================
-// Start the Express Server
+// Start server locally
 // ==========================================================================
-app.listen(PORT, () => {
-    console.log(`===========================================`);
-    console.log(`🚀 NexusAI Backend is running on port ${PORT}`);
-    console.log(`🤖 Powered by Google Gemini (${process.env.GEMINI_MODEL || 'gemini-3.6-flash'})`);
-    console.log(`🔗 Health Check: http://localhost:${PORT}/`);
-    console.log(`💬 Chat API:     http://localhost:${PORT}/api/chat`);
-    console.log(`===========================================`);
-});
+
+if (require.main === module) {
+    app.listen(PORT, () => {
+        console.log(`===========================================`);
+        console.log(`🚀 NexusAI Backend is running on port ${PORT}`);
+        console.log(`🤖 Powered by Google Gemini (${process.env.GEMINI_MODEL || 'gemini-3.6-flash'})`);
+        console.log(`🔗 Health Check: http://localhost:${PORT}/`);
+        console.log(`💬 Chat API:     http://localhost:${PORT}/api/chat`);
+        console.log(`===========================================`);
+    });
+}
+
+// Export Express app for Vercel
+module.exports = app;
